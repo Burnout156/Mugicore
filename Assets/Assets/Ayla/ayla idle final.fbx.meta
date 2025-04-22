@@ -1,0 +1,247 @@
+fileFormatVersion: 2
+guid: 16fb3c72d897d3e4caf38f6a1ddb711d
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: a17c3d57584a51846ba0f26af28d0ba9, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 1
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: ayla idle final(Clone)
+      parentName: 
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: HEAT_AutoRig
+      parentName: ayla idle final(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: model
+      parentName: HEAT_AutoRig
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_Root
+      parentName: HEAT_AutoRig
+      position: {x: 0.0000000024759381, y: -9.632926e-25, z: 0.0096065495}
+      rotation: {x: 0.00037441842, y: 4.115901e-11, z: -4.6232732e-14, w: 0.99999994}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_Hips
+      parentName: heat_Root
+      position: {x: -0.012344942, y: 1.0410142, z: -0.000102217426}
+      rotation: {x: -0.094907485, y: -0.020553906, z: -0.018740434, w: 0.99509746}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_Spine
+      parentName: heat_Hips
+      position: {x: 0.0054396465, y: 0.18757737, z: 0.013337165}
+      rotation: {x: 0.022018079, y: 0.015968146, z: -0.0054099993, w: 0.99961543}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_Spine1
+      parentName: heat_Spine
+      position: {x: 0.0065855905, y: 0.15922225, z: 0}
+      rotation: {x: 0.044218015, y: 0.0311832, z: -0.010146439, w: 0.9984836}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_Spine2
+      parentName: heat_Spine1
+      position: {x: 0.015910886, y: 0.11799288, z: -0.012274176}
+      rotation: {x: 0.044221126, y: 0.031183336, z: -0.010146765, w: 0.9984834}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_Neck
+      parentName: heat_Spine2
+      position: {x: -0.008328639, y: 0.06784642, z: -0.022733133}
+      rotation: {x: 0.19657971, y: -0.027276982, z: 0.06582715, w: 0.97789526}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_Head
+      parentName: heat_Neck
+      position: {x: 0.0013673678, y: 0.07750738, z: -0.021670142}
+      rotation: {x: 0.11549769, y: 0.0464776, z: 0.075789355, w: 0.98932105}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_HeadTop_End
+      parentName: heat_Head
+      position: {x: -0.018636666, y: 0.11245477, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_Shoulder_l
+      parentName: heat_Spine2
+      position: {x: -0.13564312, y: -0.009171963, z: -0.008286368}
+      rotation: {x: -0.00060835853, y: 0.12861088, z: -0.16393664, w: 0.97805095}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_UpperArm_l
+      parentName: heat_Shoulder_l
+      position: {x: -0.06315875, y: -0.055541635, z: -0.043340288}
+      rotation: {x: 0.030000508, y: -0.14935127, z: -0.30785787, w: 0.939158}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_LowerArm_l
+      parentName: heat_UpperArm_l
+      position: {x: -0.09203178, y: -0.1691395, z: -0.007223381}
+      rotation: {x: 0.1922122, y: 0.11669371, z: 0.062137596, w: 0.97240734}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_Hand_l
+      parentName: heat_LowerArm_l
+      position: {x: -0.1542154, y: -0.17908883, z: 0.050563667}
+      rotation: {x: 0.11320269, y: 0.15492941, z: -0.09742682, w: 0.97657055}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_Shoulder_r
+      parentName: heat_Spine2
+      position: {x: 0.10555612, y: -0.009171963, z: -0.008286368}
+      rotation: {x: 0.0018739249, y: -0.24987435, z: 0.30762443, w: 0.9181103}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_UpperArm_r
+      parentName: heat_Shoulder_r
+      position: {x: 0.043870278, y: -0.053027034, z: -0.043340288}
+      rotation: {x: 0.1200433, y: 0.13641644, z: 0.22335343, w: 0.95765}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_LowerArm_r
+      parentName: heat_UpperArm_r
+      position: {x: 0.09203176, y: -0.16916668, z: -0.007223381}
+      rotation: {x: 0.22511823, y: -0.14289851, z: -0.046792008, w: 0.96265894}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_Hand_r
+      parentName: heat_LowerArm_r
+      position: {x: 0.15172803, y: -0.17660153, z: 0.050563667}
+      rotation: {x: 0.07521188, y: -0.05511046, z: 0.023013063, w: 0.99537754}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_UpLeg_l
+      parentName: heat_Hips
+      position: {x: -0.09375808, y: -0.11977625, z: -0.043340288}
+      rotation: {x: 0.036722746, y: -0.160192, z: 0.030806428, w: 0.9859214}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_Leg_l
+      parentName: heat_UpLeg_l
+      position: {x: -0.029848143, y: -0.3432536, z: -0.057787046}
+      rotation: {x: 0.19798096, y: -0.052157342, z: 0.028434934, w: 0.9784041}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_Foot_l
+      parentName: heat_Leg_l
+      position: {x: 0.0024873465, y: -0.4601588, z: 0.06501043}
+      rotation: {x: -0.1355752, y: 0.07084753, z: -0.058558818, w: 0.98649424}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_ToeBase_l
+      parentName: heat_Foot_l
+      position: {x: -0, y: -0.10446849, z: 0.1155741}
+      rotation: {x: -0.00000010021998, y: 0.0000010284269, z: 0.00000042113106, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_UpLeg_r
+      parentName: heat_Hips
+      position: {x: 0.12512828, y: -0.11977625, z: -0.043340288}
+      rotation: {x: -0.055938534, y: 0.09393489, z: 0.106700584, w: 0.9882622}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_Leg_r
+      parentName: heat_UpLeg_r
+      position: {x: -0, y: -0.34822828, z: 0.021670142}
+      rotation: {x: 0.18996836, y: -0.0590274, z: 0.029107874, w: 0.97958183}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_Foot_r
+      parentName: heat_Leg_r
+      position: {x: -0, y: -0.4626462, z: -0.028893523}
+      rotation: {x: -0.056769677, y: -0.048936266, z: -0.06810623, w: 0.9948588}
+      scale: {x: 1, y: 1, z: 1}
+    - name: heat_ToeBase_r
+      parentName: heat_Foot_r
+      position: {x: -0, y: -0.097006455, z: 0.11557409}
+      rotation: {x: -0.017482772, y: 0.00018294141, z: -0.0029738816, w: 0.99984276}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 1
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
