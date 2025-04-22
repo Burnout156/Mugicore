@@ -414,9 +414,15 @@ MonoBehaviour:
   minionPrefab: {fileID: 1557585983417840, guid: 40448a6ee364c884ea8a1a31eb7b11e8, type: 3}
   spawnInterval: 40
   isPlayerSide: 0
-  minionSpeed: 10
-  minionAcceleration: 8
-  minionAngularSpeed: 120
+  groundSpeed: 3.5
+  groundAcceleration: 8
+  groundAngularSpeed: 120
+  flySpeed: 4.5
+  flyAcceleration: 12
+  flyAngularSpeed: 180
+  flyHeight: 3
+  stopDistance: 2
+  attackDistance: 1.5
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,6 +660,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ayla
       objectReference: {fileID: 0}
+    - target: {fileID: 7347354814264573710, guid: c50335ad935bef84e89d5083145ccd1d, type: 3}
+      propertyPath: flySpeed
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -664,33 +674,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2169466057278701818, guid: c50335ad935bef84e89d5083145ccd1d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1125937745}
-    - targetCorrespondingSourceObject: {fileID: 2169466057278701818, guid: c50335ad935bef84e89d5083145ccd1d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1125937744}
   m_SourcePrefab: {fileID: 100100000, guid: c50335ad935bef84e89d5083145ccd1d, type: 3}
 --- !u!1 &1125937743 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2169466057278701818, guid: c50335ad935bef84e89d5083145ccd1d, type: 3}
   m_PrefabInstance: {fileID: 1125937742}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1125937744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1125937743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82a0bd606613b4947b612d6bcdb4896b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minionPrefab: {fileID: 2164510317257436141, guid: babd5fd8b0564e898602d31e29677f4e, type: 3}
-  spawnInterval: 40
-  isPlayerSide: 1
-  minionSpeed: 10
-  minionAcceleration: 8
-  minionAngularSpeed: 120
 --- !u!114 &1125937745
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,121 +1,107 @@
-// MinionAI_ByOwner:
-//  — Move o minion para o inimigo mais próximo (usando MinionInfo.ownerIsPlayer).
-//  — Checa isFlying para tocar Walk✱ ou Fly✱ na direção certa.
-//  — Desativa-se se MinionAI_ByTag estiver presente e previne duplicação.
 using UnityEngine;
 using UnityEngine.AI;
 using System.Linq;
 
+/// <summary>
+/// MinionAI_ByOwner
+///  — Move o minion até o inimigo mais próximo (baseado em MinionInfo.ownerIsPlayer).
+///  — Para bruscamente a uma distância de “stopDistance”.
+///  — Quando dentro de “attackDistance”, dispara ataques com cooldown.
+///  — Fora de alcance de ataque, fica em “IdleBattle”.
+///  — Fora de stopDistance, toca Walk✱ ou Fly✱ conforme isFlying.
+/// </summary>
 [RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(MinionInfo))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(MinionInfo))]
 [RequireComponent(typeof(MinionHealth))]
 public class MinionAI_ByOwner : MonoBehaviour
 {
     NavMeshAgent agent;
-    Animator anim;
-    MinionInfo info;
-    MinionHealth health;
+    Animator     anim;
+    MinionInfo   info;
+
+    [Header("Distâncias")]
+    public float stopDistance   = 10f;
+    public float attackDistance = 10.5f;
 
     [Header("Ataque")]
-    [SerializeField, Tooltip("Distância mínima para parar e atacar")]
-    private float attackRange = 26f;
-    [SerializeField, Tooltip("Tempo entre ataques (segundos)")]
-    private float attackCooldown = 1.5f;
-    [SerializeField, Tooltip("Dano por ataque")]
-    private float damageAmount = 10f;
+    public float attackCooldown = 1.5f;
+    public float damageAmount   = 10f;
+
     float lastAttackTime;
+    const float moveThresh = 0.1f;
 
-    const float moveThreshold = 0.1f;
-
-    void Start()
+    void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        anim = GetComponent<Animator>();
-        info = GetComponent<MinionInfo>();
-        health = GetComponent<MinionHealth>();
+        anim  = GetComponent<Animator>();
+        info  = GetComponent<MinionInfo>();
 
-        // faz o agente parar exatamente a 'attackRange' do destino
-        agent.stoppingDistance = attackRange;
-
-        anim.Play("IdleNormal");
+        agent.stoppingDistance = stopDistance;
+        agent.autoBraking      = false;
     }
+
+    void Start() => anim.Play("IdleNormal");
 
     void Update()
     {
-        // encontra o inimigo mais próximo…
-        var enemies = FindObjectsOfType<MinionInfo>()
-            .Where(m => m.ownerIsPlayer != info.ownerIsPlayer)
-            .Select(m => m.transform)
-            .ToArray();
-        if (enemies.Length == 0) return;
+        // procura alvo ------------------------------------------
+        var enemy = FindObjectsOfType<MinionInfo>()
+                    .Where(m => m.ownerIsPlayer != info.ownerIsPlayer)
+                    .OrderBy(m => (m.transform.position - transform.position).sqrMagnitude)
+                    .Select(m => m.transform)
+                    .FirstOrDefault();
+        if (!enemy) return;
 
-        var nearest = enemies
-            .OrderBy(t => (t.position - transform.position).sqrMagnitude)
-            .First();
-        var targetHealth = nearest.GetComponent<MinionHealth>();
+        float dist = Vector3.Distance(transform.position, enemy.position);
 
-        // Distância exata ao alvo
-        float distToTarget = Vector3.Distance(transform.position, nearest.position);
+        /* 1) manda mover só se ainda não tem caminho ou se precisamos recalcular   */
+        if (!agent.hasPath || agent.remainingDistance > stopDistance)
+            agent.SetDestination(enemy.position);
 
-        // define destino
-        agent.SetDestination(nearest.position);
+        /* 2) DEBUG simples ------------------------------- */
+        if (dist < 15f)
+            Debug.Log($"[{name}] dist:{dist:F1}  remain:{agent.remainingDistance:F1}  stop:{stopDistance:F1}");
 
-        // ⬇️ Debug log para inspeção no Console
-        Debug.Log($"[MinionAI_ByOwner] distToTarget: {distToTarget:F2}, remaining: {agent.remainingDistance:F2}, stopping: {agent.stoppingDistance:F2}"); // ← debug
-
-        // se o agente estiver pronto e dentro do stoppingDistance:
-        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        /* 3) se caminho finalizado e perto o suficiente -- */
+        if (!agent.pathPending &&
+            agent.remainingDistance != Mathf.Infinity &&
+            agent.remainingDistance <= stopDistance)
         {
             agent.isStopped = true;
-            HandleAttack(targetHealth);
+
+            if (dist <= attackDistance)
+                TryAttack(enemy.GetComponent<MinionHealth>());
+            else
+                anim.Play("IdleNormal");
         }
         else
         {
             agent.isStopped = false;
-            UpdateMovementAnimation(agent.velocity);
+            UpdateMoveAnim(agent.velocity);
         }
     }
 
-
-    void HandleAttack(MinionHealth targetHealth)
+    void TryAttack(MinionHealth target)
     {
         if (Time.time - lastAttackTime < attackCooldown)
         {
-            anim.Play("IdleBattle");
+            anim.Play("IdleNormal");   // em cooldown
             return;
         }
         lastAttackTime = Time.time;
-
-        int idx = Random.Range(1, 4);
-        anim.Play($"Attack0{idx}");
-
-        if (targetHealth != null)
-            targetHealth.TakeDamage(damageAmount);
+        anim.Play($"Attack0{Random.Range(1,4)}");
+        target?.TakeDamage(damageAmount);
     }
 
-
-    void UpdateMovementAnimation(Vector3 velocity)
+    void UpdateMoveAnim(Vector3 vel)
     {
-        if (velocity.magnitude <= moveThreshold)
-        {
-            anim.Play("IdleNormal");
-            return;
-        }
+        if (vel.magnitude <= moveThresh) { anim.Play("IdleNormal"); return; }
 
-        Vector3 localVel = transform.InverseTransformDirection(velocity).normalized;
-        bool fwd = localVel.z > 0.5f;
-        bool back = localVel.z < -0.5f;
-        bool right = localVel.x > 0.5f;
-        bool left = localVel.x < -0.5f;
-
-        string prefix = info.isFlying ? "Fly" : "Walk";
-        string dirSuffix = fwd ? "FWD"
-                         : back ? "BWD"
-                         : right ? "Right"
-                         : left ? "Left"
-                         : "FWD";
-
-        anim.Play(prefix + dirSuffix);
+        Vector3 lv = transform.InverseTransformDirection(vel).normalized;
+        string dir = lv.z >  0.5f ? "FWD" :
+                     lv.z < -0.5f ? "BWD" :
+                     lv.x >  0.5f ? "Right" : lv.x < -0.5f ? "Left" : "FWD";
+        anim.Play((info.isFlying ? "Fly" : "Walk") + dir);
     }
 }

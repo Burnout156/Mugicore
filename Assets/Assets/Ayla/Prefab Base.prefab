@@ -66,10 +66,42 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a17c3d57584a51846ba0f26af28d0ba9, type: 2}
     - target: {fileID: 919132149155446097, guid: a01f859fd6fa1464d9a3a7afe90798f7, type: 3}
       propertyPath: m_Name
-      value: base
+      value: Prefab Base
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a01f859fd6fa1464d9a3a7afe90798f7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7347354814264573710}
   m_SourcePrefab: {fileID: 100100000, guid: a01f859fd6fa1464d9a3a7afe90798f7, type: 3}
+--- !u!1 &2169466057278701818 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a01f859fd6fa1464d9a3a7afe90798f7, type: 3}
+  m_PrefabInstance: {fileID: 1358420448564510123}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7347354814264573710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2169466057278701818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82a0bd606613b4947b612d6bcdb4896b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minionPrefab: {fileID: 2164510317257436141, guid: babd5fd8b0564e898602d31e29677f4e, type: 3}
+  spawnInterval: 40
+  isPlayerSide: 1
+  groundSpeed: 3.5
+  groundAcceleration: 8
+  groundAngularSpeed: 120
+  flySpeed: 4.5
+  flyAcceleration: 12
+  flyAngularSpeed: 180
+  flyHeight: 2
+  stopDistance: 2
+  attackDistance: 1.5
