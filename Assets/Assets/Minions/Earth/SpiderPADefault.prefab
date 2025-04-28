@@ -651,7 +651,6 @@ GameObject:
   - component: {fileID: 95690966028241422}
   - component: {fileID: 7305249547303110718}
   - component: {fileID: 1946473550825729662}
-  - component: {fileID: 2226632946538798067}
   - component: {fileID: 1299083139320860868}
   m_Layer: 0
   m_Name: SpiderPADefault
@@ -722,35 +721,19 @@ NavMeshAgent:
   m_GameObject: {fileID: 1557585983417840}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 50
-  m_Acceleration: 8
+  m_Radius: 0.4
+  m_Speed: 20
+  m_Acceleration: 15
   avoidancePriority: 50
-  m_AngularSpeed: 0
-  m_StoppingDistance: 0
+  m_AngularSpeed: 720
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0
+  m_AutoBraking: 0
+  m_AutoRepath: 0
+  m_Height: 1.8
+  m_BaseOffset: 0.3
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2226632946538798067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1557585983417840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7b6b3c3212aab143af96b535feca082, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stopDistance: 2
-  attackDistance: 1.5
-  attackCooldown: 1.5
-  damageAmount: 10
 --- !u!114 &1299083139320860868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -763,8 +746,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef2d4f15935fc24cbf5b2673317ba73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 120
   currentHealth: 0
+  isDead: 0
 --- !u!1 &1574160754023944
 GameObject:
   m_ObjectHideFlags: 0

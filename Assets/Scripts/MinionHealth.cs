@@ -1,39 +1,46 @@
-// MinionHealth.cs
-// — Controla a vida do minion, recebe dano e dispara evento de morte.
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(MinionInfo))]
 public class MinionHealth : MonoBehaviour
 {
-    [Header("Configuração de Vida")]
+    [Header("Vida")]
     public float maxHealth = 100f;
     public float currentHealth;
 
-    void Awake()
-    {
-        currentHealth = maxHealth;
-    }
+    [HideInInspector] public bool isDead;   // ← consulta externa (IA)
 
-    // Chame isso para aplicar dano
+    void Awake() => currentHealth = maxHealth;
+
+    /* ---------- DANO ---------- */
     public void TakeDamage(float amount)
     {
+        if (isDead) return;
+
         currentHealth -= amount;
         if (currentHealth <= 0f)
             Die();
     }
 
-    private void Die()
+    /* ---------- MORTE --------- */
+    void Die()
     {
-        // Aqui você pode tocar animação de morte ou destruir o objeto
+        isDead = true;
+
+        /* animação: define bool IsDead */
         var anim = GetComponent<Animator>();
-        if (anim) anim.SetTrigger("Die");
-        // Desativa navegação e AI
-        var agent = GetComponent<NavMeshAgent>();
-        if (agent) agent.isStopped = true;
-        foreach(var ai in GetComponents<MonoBehaviour>())
-            if (ai is NavMeshAgent == false && ai is Animator == false)
-                ai.enabled = false;
-        // Destrói após 3s (tempo para animação)
+        if (anim) anim.SetBool("IsDead", true);
+
+        /* interrompe navegação */
+        var nav = GetComponent<NavMeshAgent>();
+        if (nav) nav.isStopped = true;
+
+        /* desativa todas as IAs */
+        foreach (var mb in GetComponents<MonoBehaviour>())
+            if (mb != this && !(mb is Animator) && !(mb is NavMeshAgent))
+                mb.enabled = false;
+
+        /* destrói após 3 s (tempo de clipe) */
         Destroy(gameObject, 3f);
     }
 }
